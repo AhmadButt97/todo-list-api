@@ -66,19 +66,3 @@ Response:
 curl -X PATCH http://localhost:3000/tasks/<id>/done
 ```
 
-## Reflection
-
-**What was the trickiest part?**
-The logic itself was straightforward — the trickier part was thinking through the small edge cases that are easy to skip when building something "simple": what happens if `title` is missing or empty, what status code to return when a task id doesn't exist (404 vs a silent no-op), and deciding how PATCH should differ from PUT rather than treating them as interchangeable.
-
-**Why I made the choices I did**
-- **In-memory storage** because the task explicitly didn't require a database, and it keeps the app dependency-free and easy to run anywhere.
-- **Express** because it's minimal and lets the routing stay readable — each endpoint is a few lines with no extra framework overhead.
-- **UUIDs for task ids** instead of incrementing numbers, since UUIDs avoid collisions if the storage strategy ever changes (e.g. multiple instances writing at once).
-- **Separate PATCH and PUT routes** to reflect their actual REST meaning: PATCH only touches the `done` flag, while PUT expects and replaces the full task representation.
-
-**If I had another day, what would I improve?**
-- Add a real test suite (unit tests for each route, not just manual curl checks).
-- Add input validation with a schema library (e.g. `zod` or `joi`) instead of hand-rolled checks.
-- Swap in a lightweight persistent store (SQLite or a JSON file) so data survives a restart, while keeping the "no real database required" spirit.
-- Add basic request logging and a `/health` endpoint separate from `/`, useful once this runs in a container behind a load balancer.
