@@ -2,7 +2,7 @@
 
 A simple in-memory to-do list REST API, built for the DevOps & Cloud Internship take-home challenge.
 
-## Tech stack
+## Tech stack 
 
 - Node.js + Express
 - In-memory storage (no database — data resets when the server restarts)
