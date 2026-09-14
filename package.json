@@ -1,0 +1,14 @@
+{
+  "name": "todo-list-api",
+  "version": "1.0.0",
+  "description": "A simple in-memory to-do list API built for the DevOps & Cloud Internship challenge",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --test test.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.22.3"
+  }
+}
